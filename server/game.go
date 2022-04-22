@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"strconv"
 	"time"
@@ -17,12 +18,12 @@ type jsoner struct {
 	Timestamp string
 	Question  string
 	Length    int
+	Target    int
 	Answer    int
 	Data      []data
 }
 
 var JSON jsoner
-var LENG int
 
 func game_init() {
 	timestamp := time.Now().Unix()
@@ -33,17 +34,6 @@ func game_init() {
 	JSON.Length = 0
 	JSON.Answer = -1
 	JSON.Data = nil
-	/*
-		JSON.length = 4
-		JSON.answer = -1
-		for i := 0; i < JSON.length; i++ {
-			JSON.data[i].Id = i
-			JSON.data[i].Text = "I'm a robot."
-		}
-	*/
-
-	LENG = 0
-	Log_Debug("4")
 }
 
 func update_json() {
@@ -54,14 +44,12 @@ func update_json() {
 	if err == nil {
 		ioutil.WriteFile("./status.json", jsonByte, 0)
 	}
-	Log_Debug("3")
 }
 
 func New_Game(length int) {
-	LENG = length
+	JSON.Target = length
 	game_init()
 	update_json()
-	Log_Debug("2")
 }
 
 func New_Answer(text string) {
@@ -70,9 +58,9 @@ func New_Answer(text string) {
 	temp.Text = text
 	JSON.Data = append(JSON.Data, temp)
 	JSON.Length += 1
-	if JSON.Length >= LENG {
+	fmt.Println(JSON.Target)
+	if JSON.Length >= JSON.Target {
 		JSON.Status = "200"
 	}
 	update_json()
-	Log_Debug("1")
 }
