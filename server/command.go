@@ -12,7 +12,8 @@ func Command_Waiting() {
 		switch temp {
 
 		case "next":
-			Log_Info("Next Game")
+			New_Game(4)
+			Log_Info("New Game for 4 answers!")
 
 		case "stop":
 			fmt.Println("Goodbye! :p")
@@ -20,7 +21,9 @@ func Command_Waiting() {
 			Log_Info("Server Stop")
 
 		default:
-			fmt.Println("Command Error!")
+			New_Answer(temp)
+			Log_Info("Get an test answer!")
+			//fmt.Println("Command Error!")
 
 		}
 	}
