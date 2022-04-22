@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"strconv"
 	"time"
@@ -30,10 +29,12 @@ func game_init() {
 
 	JSON.Status = "100"
 	JSON.Timestamp = strconv.FormatInt(timestamp, 10)
-	JSON.Question = "Are you a robot?"
+	JSON.Question = Pull_Question()
 	JSON.Length = 0
 	JSON.Answer = -1
 	JSON.Data = nil
+
+	Log_Info("初始化完成")
 }
 
 func update_json() {
@@ -43,6 +44,7 @@ func update_json() {
 	jsonByte, err := json.Marshal(JSON)
 	if err == nil {
 		ioutil.WriteFile("./status.json", jsonByte, 0)
+		Log_Info("状态已被更新")
 	}
 }
 
@@ -50,17 +52,24 @@ func New_Game(length int) {
 	JSON.Target = length
 	game_init()
 	update_json()
+	go New_Answer(JSON.Question, true)
 }
 
-func New_Answer(text string) {
+func New_Answer(text string, AI bool) {
 	var temp data
-	temp.Id = JSON.Length
-	temp.Text = text
+	if AI {
+		temp.Text = Pull_Answer(text)
+		temp.Id = JSON.Length
+		JSON.Answer = temp.Id
+	} else {
+		temp.Id = JSON.Length
+		temp.Text = text
+	}
 	JSON.Data = append(JSON.Data, temp)
 	JSON.Length += 1
-	fmt.Println(JSON.Target)
 	if JSON.Length >= JSON.Target {
 		JSON.Status = "200"
 	}
+	Log_Info("采集到新样本：" + temp.Text)
 	update_json()
 }

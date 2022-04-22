@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func Command_Waiting() {
@@ -12,17 +13,20 @@ func Command_Waiting() {
 		switch temp {
 
 		case "next":
-			New_Game(4)
-			Log_Info("New Game for 4 answers!")
+			var n int
+			fmt.Scan(&n)
+			New_Game(n)
+			Log_Info("准备采集 " + strconv.Itoa(n) + " 样本")
 
-		case "stop":
-			fmt.Println("Goodbye! :p")
-			fmt.Println("==============================")
-			Log_Info("Server Stop")
+		/*
+			case "stop":
+				fmt.Println("Goodbye! :p")
+				fmt.Println("==============================")
+				Log_Info("系统结束运行")
+		*/
 
 		default:
-			New_Answer(temp)
-			Log_Debug("Get an test answer!")
+			New_Answer(temp, false)
 			//fmt.Println("Command Error!")
 
 		}

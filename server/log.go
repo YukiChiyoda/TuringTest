@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -13,13 +13,16 @@ func init() {
 }
 
 func Log_Debug(message string) {
-	fmt.Printf("[DEBUG] %s\n", message)
+	//fmt.Printf("[DEBUG] %s\n", message)
+	log.Printf("[DEBUG] %s\n", message)
 }
 
 func Log_Info(message string) {
-	fmt.Printf("[%v] %s\n", timer, message)
+	//fmt.Printf("[%v] %s\n", timer, message)
+	log.Printf("[INFO] %s\n", message)
 }
 
 func Log_Error(message string) {
-	fmt.Printf("[%v] %s\n", timer, message)
+	//fmt.Printf("[ERROR] %s\n", message)
+	log.Fatalf("[ERROR] %s\n", message)
 }
