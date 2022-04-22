@@ -22,7 +22,7 @@ func http_push(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "-1")
 	} else {
 		New_Answer(temp[0], false)
-		Log_Info(r.RemoteAddr + "提交了答案" + temp[0])
+		Log_Info(r.RemoteAddr + "提交了答案：" + temp[0])
 		fmt.Fprint(w, "0")
 	}
 }
@@ -31,7 +31,7 @@ func http_answer(w http.ResponseWriter, r *http.Request) {
 	if temp := r.URL.Query().Get("flag"); len(temp) < 1 {
 		fmt.Fprint(w, "-1")
 	} else {
-		Log_Info(r.RemoteAddr + "作答判定为" + temp)
+		Log_Info(r.RemoteAddr + "作答判定为：" + temp)
 		fmt.Fprint(w, "0")
 	}
 }

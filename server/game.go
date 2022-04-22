@@ -65,11 +65,12 @@ func New_Answer(text string, AI bool) {
 		temp.Id = JSON.Length
 		temp.Text = text
 	}
+	Log_Info("采集到新样本：" + temp.Text)
 	JSON.Data = append(JSON.Data, temp)
 	JSON.Length += 1
 	if JSON.Length >= JSON.Target {
+		Log_Info("样本采集数已达到目标")
 		JSON.Status = "200"
 	}
-	Log_Info("采集到新样本：" + temp.Text)
 	update_json()
 }

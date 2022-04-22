@@ -1,10 +1,15 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
+	"io"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
+	"os"
 	"regexp"
+	"strings"
 )
 
 type api struct {
@@ -13,9 +18,26 @@ type api struct {
 }
 
 func Pull_Question() string {
-	temp := "hello"
-	Log_Info("拉取到问题：" + temp)
-	return "temp"
+	file, err := os.Open("./question.txt")
+	if err != nil {
+		Log_Error("Bad Error for -3.1")
+		return err.Error()
+	}
+	defer file.Close()
+	cache := bufio.NewReader(file)
+	var text []string
+	for {
+		line, err := cache.ReadString('\n')
+		if (err != nil || err == io.EOF) && line == "" {
+			break
+		}
+		//Log_Debug(line)
+		line = strings.TrimSpace(line)
+		text = append(text, line)
+	}
+	result := text[rand.Intn(len(text))]
+	Log_Info("拉取到随机问题：" + result)
+	return result
 }
 
 func Pull_Answer(question string) string {
