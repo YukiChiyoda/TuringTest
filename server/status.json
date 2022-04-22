@@ -1,0 +1,24 @@
+{
+    "status": "200",
+    "timestamp": "1650602600",
+    "length": 4,
+    "answer": 0,
+    "data": [
+        {
+            "id": 0,
+            "text": "I'm a robot."
+        },
+        {
+            "id": 1,
+            "text": "I'm not a robot."
+        },
+        {
+            "id": 2,
+            "text": "I'm NOT a robot."
+        },
+        {
+            "id": 3,
+            "text": "I'm a human."
+        }
+    ]
+}
