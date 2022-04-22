@@ -3,26 +3,24 @@
 * 以固定的周期向`http://job.hituring.cn/status.go`发送HTTP请求，您将获取到如下格式的JSON文本：
 ```
 {
-    "status": "200",
-    "timestamp": "1650602600",
-    "length": 4,  //待选项数量
-    "answer": 0,  //正确的待选项id
-    "data": [
+    "Status": "200", //状态码：100-等待采集志愿者样本；200-等待玩家回答
+    "Timestamp": "1650625200", //时间戳
+    "Question": "我想问你一个问题", //问题原文
+    "Length": 3, //已采集样本数
+    "Target": 3, //计划采集样本数
+    "Answer": 0, //正确样本(AI作答样本)序号
+    "Data": [
         {
-            "id": 0,
-            "text": "I'm a robot."
+            "Id": 0, //样本序号
+            "Text": "问吧，听着呢" //样本原文
         },
         {
-            "id": 1,
-            "text": "I'm not a robot."
+            "Id": 1,
+            "Text": "请讲~"
         },
         {
-            "id": 2,
-            "text": "I'm NOT a robot."
-        },
-        {
-            "id": 3,
-            "text": "I'm a human."
+            "Id": 2,
+            "Text": "你是谁呀"
         }
     ]
 }
