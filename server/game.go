@@ -43,7 +43,10 @@ func update_json() {
 
 	jsonByte, err := json.Marshal(JSON)
 	if err == nil {
-		ioutil.WriteFile("./status.json", jsonByte, 0)
+		err = ioutil.WriteFile("./status.json", jsonByte, 0777)
+		if err != nil {
+			Log_Error(err.Error())
+		}
 		Log_Info("状态已被更新")
 	}
 }
