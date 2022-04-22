@@ -10,6 +10,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 )
 
 type api struct {
@@ -35,6 +36,7 @@ func Pull_Question() string {
 		line = strings.TrimSpace(line)
 		text = append(text, line)
 	}
+	rand.Seed(time.Now().UnixNano())
 	result := text[rand.Intn(len(text))]
 	Log_Info("拉取到随机问题：" + result)
 	return result

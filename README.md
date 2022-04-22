@@ -1,6 +1,6 @@
 ## 客户端开发手册
 ---
-* 以固定的周期向`http://job.hituring.cn/status.go`发送HTTP请求，您将获取到如下格式的JSON文本：
+* 以固定的周期向`http://job.hituring.cn:233/status.go`发送HTTP请求，您将获取到如下格式的JSON文本：
 ```
 {
     "Status": "200", //状态码：100-等待采集志愿者样本；200-等待玩家回答
@@ -28,7 +28,7 @@
 * 您需要解析其中的信息并将其更新到客户端的前端界面。
 ---
 *该部分功能仅适用于**志愿者客户端***
-* 向`http://job.hituring.cn/push.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
+* 向`http://job.hituring.cn:233/push.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
 
 |参数|描述|
 |:---:|:---:|
@@ -38,7 +38,7 @@
 ---
 *该部分功能仅适用于**玩家客户端***
 * 玩家在前端页面中作答后，即时判定其作答是否正确，并将其反馈到客户端的前端界面；
-* 向`http://job.hituring.cn/answer.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
+* 向`http://job.hituring.cn:233/answer.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
 
 |参数|描述|
 |:---:|:---:|
