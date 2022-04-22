@@ -22,7 +22,7 @@ func Command_Waiting() {
 
 		default:
 			New_Answer(temp)
-			Log_Info("Get an test answer!")
+			Log_Debug("Get an test answer!")
 			//fmt.Println("Command Error!")
 
 		}

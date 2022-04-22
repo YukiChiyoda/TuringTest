@@ -8,68 +8,71 @@ import (
 )
 
 type data struct {
-	id   int
-	text string
+	Id   int
+	Text string
 }
 
 type jsoner struct {
-	status    string
-	timestamp string
-	question  string
-	length    int
-	answer    int
-	data      []data
+	Status    string
+	Timestamp string
+	Question  string
+	Length    int
+	Answer    int
+	Data      []data
 }
 
 var JSON jsoner
 var LENG int
 
-func init() {
+func game_init() {
 	timestamp := time.Now().Unix()
 
-	JSON.status = "000"
-	JSON.timestamp = strconv.FormatInt(timestamp, 10)
-	JSON.question = "Are you a robot?"
-	JSON.length = 0
-	JSON.answer = -1
-	JSON.data = nil
+	JSON.Status = "100"
+	JSON.Timestamp = strconv.FormatInt(timestamp, 10)
+	JSON.Question = "Are you a robot?"
+	JSON.Length = 0
+	JSON.Answer = -1
+	JSON.Data = nil
 	/*
 		JSON.length = 4
 		JSON.answer = -1
 		for i := 0; i < JSON.length; i++ {
-			JSON.data[i].id = i
-			JSON.data[i].text = "I'm a robot."
+			JSON.data[i].Id = i
+			JSON.data[i].Text = "I'm a robot."
 		}
 	*/
 
 	LENG = 0
+	Log_Debug("4")
 }
 
 func update_json() {
 	timestamp := time.Now().Unix()
-	JSON.timestamp = strconv.FormatInt(timestamp, 10)
+	JSON.Timestamp = strconv.FormatInt(timestamp, 10)
 
 	jsonByte, err := json.Marshal(JSON)
 	if err == nil {
 		ioutil.WriteFile("./status.json", jsonByte, 0)
 	}
+	Log_Debug("3")
 }
 
 func New_Game(length int) {
 	LENG = length
-	JSON.status = "100"
-	JSON.question = "Test Question"
+	game_init()
 	update_json()
+	Log_Debug("2")
 }
 
 func New_Answer(text string) {
 	var temp data
-	temp.id = JSON.length
-	temp.text = text
-	JSON.data = append(JSON.data, temp)
-	JSON.length += 1
-	if JSON.length >= LENG {
-		JSON.status = "200"
+	temp.Id = JSON.Length
+	temp.Text = text
+	JSON.Data = append(JSON.Data, temp)
+	JSON.Length += 1
+	if JSON.Length >= LENG {
+		JSON.Status = "200"
 	}
 	update_json()
+	Log_Debug("1")
 }
