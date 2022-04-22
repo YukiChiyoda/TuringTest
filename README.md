@@ -30,7 +30,7 @@
 * 您需要解析其中的信息并将其更新到客户端的前端界面。
 ---
 *该部分功能仅适用于**志愿者客户端***
-* 向`http://job.hituring.cn/push.go`发送含POST字段的HTTP请求，其中POST参数包含以下内容：
+* 向`http://job.hituring.cn/push.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
 
 |参数|描述|
 |:---:|:---:|
@@ -40,7 +40,7 @@
 ---
 *该部分功能仅适用于**玩家客户端***
 * 玩家在前端页面中作答后，即时判定其作答是否正确，并将其反馈到客户端的前端界面；
-* 向`http://job.hituring.cn/answer.go`发送含POST字段的HTTP请求，其中POST参数包含以下内容：
+* 向`http://job.hituring.cn/answer.go`发送含GET字段的HTTP请求，其中GET参数包含以下内容：
 
 |参数|描述|
 |:---:|:---:|
