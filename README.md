@@ -2,6 +2,30 @@
 ---
 * 以固定的周期向`http://job.hituring.cn/status.go`发送HTTP请求，您将获取到如下格式的JSON文本：
 ```
+{
+    "status": "200",
+    "timestamp": "1650602600",
+    "length": 4,  //待选项数量
+    "answer": 0,  //正确的待选项id
+    "data": [
+        {
+            "id": 0,
+            "text": "I'm a robot."
+        },
+        {
+            "id": 1,
+            "text": "I'm not a robot."
+        },
+        {
+            "id": 2,
+            "text": "I'm NOT a robot."
+        },
+        {
+            "id": 3,
+            "text": "I'm a human."
+        }
+    ]
+}
 ```
 * 您需要解析其中的信息并将其更新到客户端的前端界面。
 ---
