@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.9
 
-Window {
+Window {    //窗口对象
     id: window
     visible: true
     width: 640
@@ -20,7 +20,7 @@ Window {
         }
     }
 
-    function request_question() {
+    function request_question() {   //向服务端获取问题信息
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.HEADERS_RECEIVED) {
@@ -40,7 +40,7 @@ Window {
         xhr.send()
     }
 
-    function request_Answer() {
+    function request_Answer() {     //向服务端发送答案并获得反馈，暂未编写
         flag = true;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -57,7 +57,7 @@ Window {
         }
     }
 
-    Timer {
+    Timer {     //定时器，flag==false为已获得服务器数据且玩家暂未提交答案，其余情况flag将为true
         id: monitor
         interval: 300
         repeat: true
@@ -72,7 +72,7 @@ Window {
         }
     }
 
-    MouseArea {
+    MouseArea {     //鼠标获取区域
         anchors.fill: parent
         anchors.rightMargin: 0
         anchors.bottomMargin: 0
