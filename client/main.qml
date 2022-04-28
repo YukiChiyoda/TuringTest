@@ -48,7 +48,7 @@ Window {    //窗口对象
         }
     }
 
-    Timer {
+    Timer {     //定时获取服务端数据
         id: requestQ
         interval: 300
         repeat: true
