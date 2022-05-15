@@ -9,7 +9,6 @@ Window {
     width: 640
     height: 480
     flags: Qt.Window | Qt.FramelessWindowHint
-    Material.background: Material.Cyan
 
     property int bw: 3
     property int ans: 0
@@ -124,16 +123,16 @@ Window {
                              window.startSystemResize(e);
                          }
     }
-
+    
     Image {
         id: bg
         width: window.width
         height: window.height
         anchors.horizontalCenter: parent.horizontalCenter
         fillMode: Image.PreserveAspectFit
-        source: "file:///E:/C++/TuringTest/prpr.jpg"
+        source: "prpr.jpg"
     }
-
+    
     ToolBar {
         Material.background: Material.Cyan
         id: toolBar
@@ -154,19 +153,20 @@ Window {
         }
 
         Rectangle {
-            x: -1
+            x: 5
             y: 20
-            width: title.paintedWidth+6
-            height: title.paintedHeight+6
+            width: title.paintedWidth+10
+            height: title.paintedHeight+10
             radius: 20
 
             Text {
-                x: 3
-                y: 3
+                x: 5
+                y: 5
                 id: title
                 text: qsTr("TuringText-Player")
                 font.pixelSize: 25
                 font.bold: true
+                font.family: "微软雅黑"
             }
         }
 
@@ -196,7 +196,7 @@ Window {
     Rectangle {
         id: question
         x: toolBar.availableWidth/2-questionText.text.length*questionText.font.pixelSize
-        y: window.height/4
+        y: window.height/5.5
         width: questionText.paintedWidth+6
         height: questionText.paintedHeight+6
         color: "#A5D6A7"
@@ -210,13 +210,14 @@ Window {
             font.pixelSize: 20
             font.bold: true
             font.strikeout: false
+            font.family: "微软雅黑"
         }
     }
 
     Rectangle {
         id: text
         x: toolBar.availableWidth/2-text1.text.length*text1.font.pixelSize/2-50
-        y: question.y+text1.height+10
+        y: question.y+text1.height+15
         width: text1.paintedWidth+4
         height: text1.paintedHeight+4
         color: "#A5D6A7"
@@ -230,7 +231,8 @@ Window {
             height: 25
             text: "你认为哪个是机器人的回答？"
             font.pixelSize: 20
-            font.bold: true
+            //font.bold: true
+            font.family: "微软雅黑"
         }
     }
 
@@ -240,7 +242,7 @@ Window {
         y: text.y+alpha0.height+30
         width: alpha0.paintedWidth+answer0Text.paintedWidth+10
         height: alpha0.paintedHeight+6
-        color: "#E6EE9C"
+        color: "#AFEEEE"
         radius: 10
 
         Text {
@@ -248,8 +250,9 @@ Window {
             x: 3
             y: 3
             text: qsTr("A.")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         Text {
@@ -257,14 +260,15 @@ Window {
             x: alpha0.x+alpha0.paintedWidth
             y: alpha0.y
             text: qsTr("")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         RoundButton {
             id: answer0Button
             x: answer0Text.x+answer0Text.paintedWidth+2
-            y: -10
+            y: -5
             text: "<-"
             Material.background: Material.Cyan
 
@@ -278,10 +282,10 @@ Window {
     Rectangle {
         id: answer1
         x: text.x
-        y: answer0.y+answer1.height+5
+        y: answer0.y+answer1.height+15
         width: alpha1.paintedWidth+answer1Text.paintedWidth+10
         height: alpha1.paintedHeight+6
-        color: "#E6EE9C"
+        color: "#AFEEEE"
         radius: 10
 
         Text {
@@ -289,8 +293,9 @@ Window {
             x: 3
             y: 3
             text: qsTr("B.")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         Text {
@@ -298,14 +303,15 @@ Window {
             x: alpha1.x+alpha1.paintedWidth
             y: alpha1.y
             text: qsTr("")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         RoundButton {
             id: answer1Button
             x: answer1Text.x+answer1Text.paintedWidth+2
-            y: -10
+            y: -5
             text: "<-"
             Material.background: Material.Cyan
 
@@ -319,10 +325,10 @@ Window {
     Rectangle {
         id: answer2
         x: text.x
-        y: answer1.y+answer2.height+5
+        y: answer1.y+answer2.height+15
         width: alpha2.paintedWidth+answer2Text.paintedWidth+10
         height: alpha2.paintedHeight+6
-        color: "#E6EE9C"
+        color: "#AFEEEE"
         radius: 10
         visible: false
 
@@ -331,8 +337,9 @@ Window {
             x: 3
             y: 3
             text: qsTr("C.")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         Text {
@@ -340,14 +347,15 @@ Window {
             x: alpha2.x+alpha2.paintedWidth
             y: alpha2.y
             text: qsTr("")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         RoundButton {
             id: answer2Button
             x: answer2Text.x+answer2Text.paintedWidth+2
-            y: -10
+            y: -5
             text: "<-"
             Material.background: Material.Cyan
 
@@ -361,10 +369,10 @@ Window {
     Rectangle {
         id: answer3
         x: text.x
-        y: answer2.y+answer3.height+5
+        y: answer2.y+answer3.height+15
         width: alpha3.paintedWidth+answer3Text.paintedWidth+10
         height: alpha3.paintedHeight+6
-        color: "#E6EE9C"
+        color: "#AFEEEE"
         radius: 10
         visible: false
 
@@ -372,9 +380,10 @@ Window {
             id: alpha3
             x: 3
             y: 3
-            text: qsTr("C.")
-            font.pixelSize: 25
-            font.bold: true
+            text: qsTr("D.")
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         Text {
@@ -382,14 +391,15 @@ Window {
             x: alpha3.x+alpha3.paintedWidth
             y: alpha3.y
             text: qsTr("")
-            font.pixelSize: 25
-            font.bold: true
+            font.pixelSize: 22
+            //font.bold: true
+            font.family: "微软雅黑"
         }
 
         RoundButton {
             id: answer3Button
             x: answer3Text.x+answer3Text.paintedWidth+2
-            y: -10
+            y: -5
             text: "<-"
             Material.background: Material.Cyan
 
@@ -417,6 +427,7 @@ Window {
             text: ""
             font.pixelSize: 50
             font.bold: true
+            font.family: "微软雅黑"
         }
     }
 }

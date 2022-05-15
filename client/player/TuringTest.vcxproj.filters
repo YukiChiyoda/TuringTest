@@ -30,9 +30,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="NewFile.qml">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="NewFile1.qml">
       <Filter>Source Files</Filter>
     </None>

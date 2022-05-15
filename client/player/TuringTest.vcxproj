@@ -86,7 +86,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <None Include="NewFile.qml" />
     <None Include="NewFile1.qml" />
     <QtRcc Include="qml.qrc" />
     <None Include="main.qml" />

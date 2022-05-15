@@ -1,9 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle.h>
-#include <QFileInfo>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 #if defined(Q_OS_WIN)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -13,7 +12,7 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 
