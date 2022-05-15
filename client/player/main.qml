@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.9
 import QtQuick.Controls.Material 2.9
+import QtGraphicalEffects 1.0
 
 Window {
     id: window
@@ -41,22 +42,27 @@ Window {
                 if(json["Length"]>=3) {
                     answer2Text.text = json["Data"][2]["Text"]
                     answer2.visible = true
+                    answer2Shadow.visible = true
                 }
                 else {
                     answer2.visible = false
+                    answer2Shadow.visible = false
                 }
 
                 if(json["Length"]>=4) {
                     answer3Text.text = json["Data"][3]["Text"]
                     answer3.visible = true
+                    answer3Shadow.visible = true
                 }
                 else {
                     answer3.visible = false
+                    answer3Shadow.visible = false
                 }
 
                 if(ts != json["Timestamp"]) {
                     ts = json["Timestamp"]
                     dialog.visible = false
+                    dialogShadow.visible = false
                 }
             }
         }
@@ -66,6 +72,7 @@ Window {
 
     function check_Answer() {
         dialog.visible = true
+        dialogShadow.visible = true
         if(num === ans) {
             dialogText.text = "回答正确！"
             dialogText.color = "#80CBC4"
@@ -123,16 +130,16 @@ Window {
                              window.startSystemResize(e);
                          }
     }
-    
+
     Image {
         id: bg
         width: window.width
         height: window.height
         anchors.horizontalCenter: parent.horizontalCenter
         fillMode: Image.PreserveAspectFit
-        source: "prpr.jpg"
+        source: "file:prpr.jpg"
     }
-    
+
     ToolBar {
         Material.background: Material.Cyan
         id: toolBar
@@ -153,21 +160,32 @@ Window {
         }
 
         Rectangle {
+            id: title
             x: 5
             y: 20
-            width: title.paintedWidth+10
-            height: title.paintedHeight+10
+            width: titleText.paintedWidth+10
+            height: titleText.paintedHeight+10
             radius: 20
-
+            color: "white"
+            
             Text {
                 x: 5
                 y: 5
-                id: title
+                id: titleText
                 text: qsTr("TuringText-Player")
                 font.pixelSize: 25
                 font.bold: true
                 font.family: "微软雅黑"
             }
+        }
+
+        DropShadow {
+            anchors.fill: source
+            horizontalOffset: 3
+            verticalOffset: 3
+            samples: 17
+            color: "#80000000"
+            source: title
         }
 
         RoundButton {
@@ -214,6 +232,15 @@ Window {
         }
     }
 
+    DropShadow {
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: question
+    }
+
     Rectangle {
         id: text
         x: toolBar.availableWidth/2-text1.text.length*text1.font.pixelSize/2-50
@@ -234,6 +261,15 @@ Window {
             //font.bold: true
             font.family: "微软雅黑"
         }
+    }
+
+    DropShadow {
+        anchors.fill: text
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: text
     }
 
     Rectangle {
@@ -267,7 +303,7 @@ Window {
 
         RoundButton {
             id: answer0Button
-            x: answer0Text.x+answer0Text.paintedWidth+2
+            x: answer0Text.x+answer0Text.paintedWidth+10
             y: -5
             text: "<-"
             Material.background: Material.Cyan
@@ -277,6 +313,16 @@ Window {
                 check_Answer()
             }
         }
+    }
+
+    DropShadow {
+        id: answer0Shadow
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: answer0
     }
 
     Rectangle {
@@ -310,7 +356,7 @@ Window {
 
         RoundButton {
             id: answer1Button
-            x: answer1Text.x+answer1Text.paintedWidth+2
+            x: answer1Text.x+answer1Text.paintedWidth+10
             y: -5
             text: "<-"
             Material.background: Material.Cyan
@@ -320,6 +366,16 @@ Window {
                 check_Answer()
             }
         }
+    }
+
+    DropShadow {
+        id: answer1Shadow
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: answer1
     }
 
     Rectangle {
@@ -354,7 +410,7 @@ Window {
 
         RoundButton {
             id: answer2Button
-            x: answer2Text.x+answer2Text.paintedWidth+2
+            x: answer2Text.x+answer2Text.paintedWidth+10
             y: -5
             text: "<-"
             Material.background: Material.Cyan
@@ -364,6 +420,17 @@ Window {
                 check_Answer()
             }
         }
+    }
+
+    DropShadow {
+        id: answer2Shadow
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: answer2
+        visible: false
     }
 
     Rectangle {
@@ -398,7 +465,7 @@ Window {
 
         RoundButton {
             id: answer3Button
-            x: answer3Text.x+answer3Text.paintedWidth+2
+            x: answer3Text.x+answer3Text.paintedWidth+10
             y: -5
             text: "<-"
             Material.background: Material.Cyan
@@ -408,6 +475,17 @@ Window {
                 check_Answer()
             }
         }
+    }
+
+    DropShadow {
+        id: answer3Shadow
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: answer3
+        visible: false
     }
 
     Rectangle {
@@ -429,5 +507,16 @@ Window {
             font.bold: true
             font.family: "微软雅黑"
         }
+    }
+
+    DropShadow {
+        id: dialogShadow
+        anchors.fill: source
+        horizontalOffset: 3
+        verticalOffset: 3
+        samples: 17
+        color: "#80000000"
+        source: dialog
+        visible: false
     }
 }
