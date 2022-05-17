@@ -44,7 +44,13 @@ func update_json() {
 
 	// [2022-05-17] JSON答案位置随机化
 	rand.Seed(time.Now().Unix())
-	rand.Shuffle(len(JSON.Data), func(i, j int){JSON.Data[i], JSON.Data[j] = JSON.Data[j], JSON.Data[i]})
+	rand.Shuffle(len(JSON.Data), func(i, j int) { JSON.Data[i], JSON.Data[j] = JSON.Data[j], JSON.Data[i] })
+
+	// [2022-05-17] JSON答案未就绪隐藏
+	temp := JSON.Data
+	if JSON.Status != "200" {
+		JSON.Data = nil
+	}
 
 	jsonByte, err := json.Marshal(JSON)
 	if err == nil {
@@ -53,6 +59,7 @@ func update_json() {
 			Log_Error(err.Error())
 		}
 		Log_Info("状态已被更新")
+		JSON.Data = temp
 	}
 }
 
