@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
+	"math/rand"
 	"strconv"
 	"time"
 )
@@ -40,6 +41,10 @@ func game_init() {
 func update_json() {
 	timestamp := time.Now().Unix()
 	JSON.Timestamp = strconv.FormatInt(timestamp, 10)
+
+	// [2022-05-17] JSON答案位置随机化
+	rand.Seed(time.Now().Unix())
+	rand.Shuffle(len(JSON.Data), func(i, j int){JSON.Data[i], JSON.Data[j] = JSON.Data[j], JSON.Data[i]})
 
 	jsonByte, err := json.Marshal(JSON)
 	if err == nil {
