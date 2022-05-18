@@ -37,7 +37,7 @@ Window {
                 questionText.text = "问题："+json["Question"]
                 answer0Text.text = json["Data"][0]["Text"]
                 answer1Text.text = json["Data"][1]["Text"]
-                ans = json["Answer"]
+                ans = json["Data"][json["Answer"]]["Id"]
 
                 if(json["Length"]>=3) {
                     answer2Text.text = json["Data"][2]["Text"]
@@ -59,7 +59,7 @@ Window {
                     answer3Shadow.visible = false
                 }
 
-                if(ts != json["Timestamp"]) {
+                if(ts !== json["Timestamp"]) {
                     ts = json["Timestamp"]
                     dialog.visible = false
                     dialogShadow.visible = false
@@ -146,6 +146,7 @@ Window {
         width: parent.width-2*bw
         height: 30
         x:bw;y:bw
+
         Item {
             anchors.fill: parent
             anchors.leftMargin: -6
